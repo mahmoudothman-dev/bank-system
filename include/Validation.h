@@ -7,5 +7,5 @@ public:
 	static bool validName(const std::string& name);
 	static bool validPassword(const std::string& password);
 	static bool validBalance(const double balance);
-	static bool validSalary(const double salary);
+	static bool validSalary(const double salary);   
 };

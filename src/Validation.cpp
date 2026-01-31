@@ -14,7 +14,7 @@ bool Validation::isAlphabatic(const string& name) {
 
 bool Validation::validName(const string& name) {
 	return isAlphabatic(name) && name.size() >= 5 && name.size() <= 20;
-}
+}    
 
 bool Validation::validPassword(const string& password) {
 	return password.size() >= 8 && password.size <= 20;
