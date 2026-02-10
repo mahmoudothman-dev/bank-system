@@ -126,12 +126,10 @@
     <ClCompile Include="bank-system.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Person.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="Validation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
-    <ClInclude Include="Header.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Validation.h" />
   </ItemGroup>
