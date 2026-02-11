@@ -30,7 +30,7 @@ void Person::setPassword(string password) {
 void Person::display() {
 	cout << "Id: " << id << endl;
 	cout << "Name: " << name << endl;
-	cout << "Password " << password << endl;
+	
 }
 
 

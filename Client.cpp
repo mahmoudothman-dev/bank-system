@@ -1,9 +1,12 @@
 #include "Client.h"
 #include "Validation.h"
-Client::Client():Person() {
-	setbalance(1500);
+
+
+Client::Client() : Person() {
+	balance = 1500;
 };
-Client::Client(int id, string name, string password,double balance):Person(id,name,password) {
+Client::Client(int id, string name, string password,double balance) 
+	: Person(id,name,password) {
 	setbalance( balance);
 }
 
@@ -13,42 +16,51 @@ void Client:: setbalance(double balance) {
 	}
 }
 //depo
-double Client:: deposit(double amount) {
+void Client:: deposit(double amount) {
 	this->balance += amount;
-	return this->balance;
 }
 
 //with
-double Client::withdraw(double amount) {
-	this->balance -= amount;
-	return this->balance;
+void Client::withdraw(double amount) {
+	if (balance >= amount) {
+		this->balance -= amount;
+		cout << "You withdrew " << amount << " successfully" << endl;
+	}
+	else {
+		cout << "Your balance is insufficient for this transaction" << endl;
+		
+	}
+	
 }
 
 //transferto
-bool Client::transfer(Client& client, double amount) {
-	if (withdraw(amount)) {
-		client.deposit(amount);
-		return true;
+void Client::transfer(Client& another, double amount) {
+	if (balance >= amount) {
+		another.deposit(amount);
+		balance -= amount;
+		cout << "Transaction was successful" << endl;
 	}
-	return false;
+	else {
+		cout << "Your balance is insufficient for this transaction" << endl;
+	}
 }
 
 
 //gett
-string Client:: getname() {
+string Client:: getName() {
 	return this->name;
 }
-string Client::getpassword() {
+string Client::getPassword() {
 	return this->password;
 }
 
-double Client::getbalance() {
+double Client::getBalance() {
 	return this->balance;
 }
 //meth
 void Client::display() {
 	Person::display();
-	cout << "BALANCE =" << balance << "\n";
-	cout << "-------------------------------------" << "\n";
+	cout << "Balance: " << balance << "\n";
+	
 }
 

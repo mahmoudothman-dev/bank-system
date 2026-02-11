@@ -6,7 +6,7 @@
 using namespace std;
 
 bool Validation::validName(string name) {
-	if (name.size() < 5) {
+	if (name.size() < 3) {
 		cout << "Your name can't be less than 5 letters" << endl;
 		return false;
 	}
@@ -14,6 +14,15 @@ bool Validation::validName(string name) {
 		cout << "Your name can't be more than 20 letters" << endl;
 		return false;
 	}
+	else if (name.front() == ' ') {
+		cout << "Your name should not begin with space" << endl;
+		return false;
+	}
+	else if (name.back() == ' ') {
+		cout << "Your name should not end with space" << endl;
+		return false;
+	}
+
 	bool space = false;
 	for (char c : name) {
 		if (isalpha(c)) {
@@ -27,7 +36,7 @@ bool Validation::validName(string name) {
 			space = true;
 		}
 		else {
-			cout << "Your name should not include symbos or numbers" << endl;
+			cout << "Your name should not include symbols or numbers" << endl;
 			return false;
 		}
 	}
@@ -36,7 +45,7 @@ bool Validation::validName(string name) {
 
 bool Validation::validPassword(string password) {
 	if (password.size() < 8) {
-		cout << "Passowrd should not be less than 8 characters" << endl;
+		cout << "Password should not be less than 8 characters" << endl;
 		return false;
 	}
 	else if (password.size() > 20) {
@@ -72,15 +81,15 @@ bool Validation::validPassword(string password) {
 	return true;
 }
 
-bool validBalance(double balance) {
+bool Validation::validBalance(double balance) {
 	if (balance < 1500) {
-		cout << "Minumum balance should be 1500";
+		cout << "Minimum balance should be 1500";
 		return false;
 	}
 	return true;
 }
 
-bool validSalary(double salary) {
+bool Validation::validSalary(double salary) {
 	if (salary < 5000) {
 		cout << "Minimum salary should be 5000";
 		return false;

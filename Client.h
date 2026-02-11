@@ -1,42 +1,37 @@
 #pragma once
 #include "Person.h"
 using namespace std;
+
+
 class Client :public Person {
 private:
 	double balance;
+
 public:
-	    Client() :Person();
+	Client();
 		
 	
-	    Client(int id, string name, string password, double balance) :Person(id, name, password);
+	Client(int id, string name, string password, double balance);
 
-		void setbalance(double balance);
-		//depo
-		double deposit(double amount);
+	void setbalance(double balance);
+	//depo
+	void deposit(double amount);
 
 
-		//with
-		double withdraw(double amount);
+	//with
+	void withdraw(double amount);
 
-		//transferto
-		bool transfer(Client & client, double amount);
+	//transferto
+	void transfer(Client & client, double amount);
 
-		//gett
-		string getname();
+	//gett
+	string getName();
 			
-		string getpassword();
+	string getPassword();
 			
-		double getbalance();
+	double getBalance();
 			
-		void display();
-			
-			
-			
-		
+	void display();
 
 };
-
-
-
-
 
