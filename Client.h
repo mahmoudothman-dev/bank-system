@@ -1,9 +1,11 @@
 #pragma once
 #include "Person.h"
+#include <iostream>
+#include <string>
 using namespace std;
 
 
-class Client :public Person {
+class Client : public Person {
 private:
 	double balance;
 
