@@ -1,30 +1,19 @@
 #pragma once
 #include<iostream>
 #include<string>
-#include "Person.h"
+#include "Employee.h"
 using namespace std;
 
-class Admin :public Person {
+class Admin :public Employee {
 
-private:
-	//Att
-	double salary;
+
 public:
 	//Def const
 	Admin();
 
 	Admin(int id, string name, string password, double salary);
     
-	//Setters
-	void set_salary(double salary);
 	
-    //Getters
-	double get_salary();
-	string getName();
-	string getPassword();
-	//Display
-
-	void display();
 
 };
 

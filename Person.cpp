@@ -15,6 +15,10 @@ Person::Person(int id, string name, string password) {
 	setPassword(password);
 }
 
+void Person::setId(int id) {
+	this->id = id;
+}
+
 void Person::setName(string name) {
 	if (Validation::validName(name)) {
 		this->name = name;
@@ -24,6 +28,10 @@ void Person::setPassword(string password) {
 	if (Validation::validPassword(password)) {
 		this->password = password;
 	}
+}
+
+int Person::getId() {
+	return id;
 }
 
 

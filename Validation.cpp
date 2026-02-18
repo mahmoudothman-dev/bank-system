@@ -7,7 +7,7 @@ using namespace std;
 
 bool Validation::validName(string name) {
 	if (name.size() < 3) {
-		cout << "Your name can't be less than 5 letters" << endl;
+		cout << "Your name can't be less than 3 letters" << endl;
 		return false;
 	}
 	else if (name.size() > 20) {
@@ -40,6 +40,15 @@ bool Validation::validName(string name) {
 			return false;
 		}
 	}
+
+	
+	name[0] = toupper(name[0]);
+	for (int i = 0; i < name.size(); i++) {
+		if (name[i] == ' ') {
+			name[i + 1] = toupper(name[i + 1]);
+		}
+	}
+	
 	return true;
 }
 
@@ -78,6 +87,8 @@ bool Validation::validPassword(string password) {
 		cout << "Password should have has at least one digit" << endl;
 		return false;
 	}
+	
+	
 	return true;
 }
 
