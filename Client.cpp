@@ -7,10 +7,10 @@ Client::Client() : Person() {
 };
 Client::Client(int id, string name, string password,double balance) 
 	: Person(id,name,password) {
-	setbalance( balance);
+	setBalance( balance);
 }
 
-void Client:: setbalance(double balance) {
+void Client:: setBalance(double balance) {
 	if (Validation::validBalance(balance)) {
 		this->balance = balance;
 	}

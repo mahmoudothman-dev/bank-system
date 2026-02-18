@@ -42,12 +42,7 @@ bool Validation::validName(string name) {
 	}
 
 	
-	name[0] = toupper(name[0]);
-	for (int i = 0; i < name.size(); i++) {
-		if (name[i] == ' ') {
-			name[i + 1] = toupper(name[i + 1]);
-		}
-	}
+	
 	
 	return true;
 }
@@ -94,7 +89,7 @@ bool Validation::validPassword(string password) {
 
 bool Validation::validBalance(double balance) {
 	if (balance < 1500) {
-		cout << "Minimum balance should be 1500";
+		cout << "Minimum balance should be 1500" << endl;
 		return false;
 	}
 	return true;
@@ -102,7 +97,7 @@ bool Validation::validBalance(double balance) {
 
 bool Validation::validSalary(double salary) {
 	if (salary < 5000) {
-		cout << "Minimum salary should be 5000";
+		cout << "Minimum salary should be 5000" << endl;
 		return false;
 	}
 	return true;

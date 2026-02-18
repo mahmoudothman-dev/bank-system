@@ -15,7 +15,7 @@ public:
 	
 	Client(int id, string name, string password, double balance);
 
-	void setbalance(double balance);
+	void setBalance(double balance);
 	//depo
 	void deposit(double amount);
 

@@ -21,6 +21,12 @@ void Person::setId(int id) {
 
 void Person::setName(string name) {
 	if (Validation::validName(name)) {
+		name[0] = toupper(name[0]);
+		for (int i = 0; i < name.size(); i++) {
+			if (name[i] == ' ') {
+				name[i + 1] = toupper(name[i + 1]);
+			}
+		}
 		this->name = name;
 	}
 }
