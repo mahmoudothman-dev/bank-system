@@ -1,8 +1,5 @@
 #include "Person.h"
 #include "Validation.h"
-#include <iostream>
-#include <string>
-using namespace std;
 
 Person::Person() {
 	this->id = 0;
@@ -40,11 +37,19 @@ int Person::getId() {
 	return id;
 }
 
+string Person::getName() {
+	return name;
+}
+
+string Person::getPassword() {
+	return password;
+}
+
 
 void Person::display() {
 	cout << "Id: " << id << endl;
 	cout << "Name: " << name << endl;
-	
+	cout << "Password: " << password << endl;
 }
 
 

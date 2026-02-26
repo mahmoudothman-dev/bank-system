@@ -45,15 +45,6 @@ void Client::transfer(Client& another, double amount) {
 	}
 }
 
-
-//gett
-string Client:: getName() {
-	return this->name;
-}
-string Client::getPassword() {
-	return this->password;
-}
-
 double Client::getBalance() {
 	return this->balance;
 }

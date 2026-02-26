@@ -1,19 +1,13 @@
 #include "Validation.h"
 #include <cctype>
 #include <algorithm>
-#include <iostream>
-#include <string>
-using namespace std;
 
 bool Validation::validName(string name) {
-	if (name.size() < 3) {
-		cout << "Your name can't be less than 3 letters" << endl;
+	if (name.size() < 3 || name.size() > 20) {
+		cout << "Your name should be between 3 and 20 letters" << endl;
 		return false;
 	}
-	else if (name.size() > 20) {
-		cout << "Your name can't be more than 20 letters" << endl;
-		return false;
-	}
+	
 	else if (name.front() == ' ') {
 		cout << "Your name should not begin with space" << endl;
 		return false;
@@ -48,14 +42,11 @@ bool Validation::validName(string name) {
 }
 
 bool Validation::validPassword(string password) {
-	if (password.size() < 8) {
-		cout << "Password should not be less than 8 characters" << endl;
+	if (password.size() < 8 || password.size() > 20) {
+		cout << "Your password should be between 8 and 20 digits" << endl;
 		return false;
 	}
-	else if (password.size() > 20) {
-		cout << "Password should not be more than 20 characters" << endl;
-		return false;
-	}
+	
 
 	bool upper = false;
 	bool lower = false;

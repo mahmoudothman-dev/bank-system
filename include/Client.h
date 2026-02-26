@@ -1,9 +1,5 @@
 #pragma once
 #include "Person.h"
-#include <iostream>
-#include <string>
-using namespace std;
-
 
 class Client : public Person {
 private:
@@ -26,11 +22,7 @@ public:
 	//transferto
 	void transfer(Client & client, double amount);
 
-	//gett
-	string getName();
-			
-	string getPassword();
-			
+	
 	double getBalance();
 			
 	void display();

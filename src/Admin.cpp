@@ -1,8 +1,4 @@
 #include "Admin.h"
-#include "Employee.h"
-#include <iostream>
-using namespace std;
-
 
 //def const
 Admin::Admin() : Employee() {}

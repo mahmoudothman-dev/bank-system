@@ -1,8 +1,6 @@
 #include "Employee.h"
 #include "Validation.h"
-#include <iostream>
-#include <string>
-using namespace std;
+
 
 Employee::Employee() : Person() {
 	salary = 5000;
@@ -16,14 +14,6 @@ void Employee::setSalary(double salary) {
 	if (Validation::validSalary(salary)) {
 		this->salary = salary;
 	}
-}
-
-string Employee::getName() {
-	return name;
-}
-
-string Employee::getPassword() {
-	return password;
 }
 
 double Employee::getSalary() {

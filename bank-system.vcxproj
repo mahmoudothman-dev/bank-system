@@ -102,6 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,19 +124,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Admin.cpp" />
-    <ClCompile Include="bank-system.cpp" />
-    <ClCompile Include="Client.cpp" />
-    <ClCompile Include="Employee.cpp" />
-    <ClCompile Include="Person.cpp" />
-    <ClCompile Include="Validation.cpp" />
+    <ClInclude Include="include\Admin.h" />
+    <ClInclude Include="include\Client.h" />
+    <ClInclude Include="include\Employee.h" />
+    <ClInclude Include="include\FilesHelper.h" />
+    <ClInclude Include="include\Parser.h" />
+    <ClInclude Include="include\Person.h" />
+    <ClInclude Include="include\Validation.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Admin.h" />
-    <ClInclude Include="Client.h" />
-    <ClInclude Include="Employee.h" />
-    <ClInclude Include="Person.h" />
-    <ClInclude Include="Validation.h" />
+    <ClCompile Include="src\Admin.cpp" />
+    <ClCompile Include="src\bank-system.cpp" />
+    <ClCompile Include="src\Client.cpp" />
+    <ClCompile Include="src\Employee.cpp" />
+    <ClCompile Include="src\FilesHelper.cpp" />
+    <ClCompile Include="src\Parser.cpp" />
+    <ClCompile Include="src\Person.cpp" />
+    <ClCompile Include="src\Validation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

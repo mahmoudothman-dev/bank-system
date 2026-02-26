@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
-#include <string>
+using namespace std;
 
 class Validation {
 public:
-	static bool validName(std::string name);
-	static bool validPassword(std::string password);
+	static bool validName(string name);
+	static bool validPassword(string password);
 	static bool validBalance(double balance);
 	static bool validSalary(double salary);
 };
