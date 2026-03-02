@@ -11,7 +11,7 @@ public:
 	Admin(int id, string name, string password, double salary);
     
 	
-
+	
 };
 
 
