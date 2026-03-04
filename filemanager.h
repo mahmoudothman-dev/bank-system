@@ -36,7 +36,7 @@ private:
 
 public:
 
-    // add vlient
+    // add client
     void addClient(Client object)  {
         ofstream file("data/clients.txt", ios::app);
         file << object.getId() << ',' << object.getName() << ',' << object.getPassword() << ',' << object.getBalance() ;
