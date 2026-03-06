@@ -26,6 +26,6 @@ public:
 	double getBalance();
 			
 	void display();
-
+	
 };
 
