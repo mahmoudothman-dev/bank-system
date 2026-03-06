@@ -124,23 +124,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DataSourceInterface.h" />
-    <ClInclude Include="FileManager.h" />
     <ClInclude Include="include\Admin.h" />
     <ClInclude Include="include\Client.h" />
+    <ClInclude Include="include\DataSourceInterface.h" />
     <ClInclude Include="include\Employee.h" />
+    <ClInclude Include="include\FileManager.h" />
     <ClInclude Include="include\FilesHelper.h" />
     <ClInclude Include="include\Parser.h" />
     <ClInclude Include="include\Person.h" />
     <ClInclude Include="include\Validation.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DataSourceInterface.cpp" />
-    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="src\Admin.cpp" />
     <ClCompile Include="src\bank-system.cpp" />
     <ClCompile Include="src\Client.cpp" />
+    <ClCompile Include="src\DataSourceInterface.cpp" />
     <ClCompile Include="src\Employee.cpp" />
+    <ClCompile Include="src\FileManager.cpp" />
     <ClCompile Include="src\FilesHelper.cpp" />
     <ClCompile Include="src\Parser.cpp" />
     <ClCompile Include="src\Person.cpp" />

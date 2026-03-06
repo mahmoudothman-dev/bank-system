@@ -36,10 +36,10 @@
     <ClInclude Include="include\Validation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileManager.h">
+    <ClInclude Include="include\DataSourceInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataSourceInterface.h">
+    <ClInclude Include="include\FileManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,10 +68,10 @@
     <ClCompile Include="src\Validation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileManager.cpp">
+    <ClCompile Include="src\DataSourceInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataSourceInterface.cpp">
+    <ClCompile Include="src\FileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
