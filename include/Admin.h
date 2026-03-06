@@ -1,13 +1,14 @@
 #pragma once
 #include "Employee.h"
-#include "Client.h"
-#include <vector>
+
+
 
 class Admin :public Employee {
 
 
 public:
-	//Def const
+	static vector<Admin> allAdmins;
+
 	Admin();
 
 	Admin(int id, string name, string password, double salary);

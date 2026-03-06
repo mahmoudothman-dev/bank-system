@@ -1,11 +1,14 @@
 #pragma once
 #include "Person.h"
+#include <vector>
 
 class Client : public Person {
 private:
 	double balance;
 
 public:
+	static vector<Client> allClients;
+
 	Client();
 		
 	

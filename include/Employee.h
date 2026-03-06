@@ -1,11 +1,15 @@
 #pragma once
 #include "Person.h"
+#include "Client.h"
+
 
 class Employee : public Person {
 private:
 	double salary;
 
 public:
+	
+	static vector<Employee> allEmployees;
 	Employee();
 
 	Employee(int id, string name, string password, double salary);
@@ -16,5 +20,14 @@ public:
 
 	void display();
 
+	void addClient(Client& client);
+
+	Client* searchClient(int id);
+
+	void listClient();
+
+	void editClient(int id, string name, string password, double balance);
+
 };
+
 

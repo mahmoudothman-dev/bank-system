@@ -1,6 +1,7 @@
 #include "Employee.h"
 #include "Validation.h"
 
+vector<Employee> Employee::allEmployees;
 
 Employee::Employee() : Person() {
 	salary = 5000;
@@ -23,4 +24,36 @@ double Employee::getSalary() {
 void Employee::display() {
 	Person::display();
 	cout << "Salary: " << salary << endl;
+}
+
+void Employee::addClient(Client& client) {
+	Client::allClients.push_back(client);
+}
+
+Client* searchClient(int id) {
+	for (int i = 0; i < Client::allClients.size(); i++) {
+		if (Client::allClients[i].getId() == id) {
+			return &Client::allClients[i];
+		}
+	}
+	return nullptr;
+}
+
+void listClient() {
+	for (int i = 0; i < Client::allClients.size(); i++) {
+		Client::allClients[i].display();
+	}
+}
+
+void editClient(int id, string name, string password, double balance) {
+	
+		for (int i = 0; i < Client::allClients.size(); i++) {
+			if (Client::allClients[i].getId() == id) {
+				Client::allClients[i].setName(name);
+				Client::allClients[i].setPassword(password);
+				Client::allClients[i].setBalance(balance);
+			}
+		}
+	
+	
 }

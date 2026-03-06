@@ -1,6 +1,7 @@
 #include "Client.h"
 #include "Validation.h"
 
+vector<Client> Client::allClients;
 
 Client::Client() : Person() {
 	balance = 1500;
@@ -51,7 +52,7 @@ double Client::getBalance() {
 //meth
 void Client::display() {
 	Person::display();
-	cout << "Balance: " << balance << "\n";
+	cout << "Balance: " << balance << endl;
 	
 }
 

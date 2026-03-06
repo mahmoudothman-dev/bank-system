@@ -1,5 +1,7 @@
 #include "FilesHelper.h"
 
+
+
 void FilesHelper::saveLast(string fileName, int id) {
 	ofstream file(fileName);
 	file << id;
@@ -17,7 +19,7 @@ int FilesHelper::getLast(string fileName) {
 }
 
 void FilesHelper::saveClient(Client c) {
-	ofstream file("data/clients.txt", ios::app);
+	ofstream file(clientsFile, ios::app);
 
 	file << c.getId() << ','
 		<< c.getName() << ','
@@ -25,10 +27,13 @@ void FilesHelper::saveClient(Client c) {
 		<< c.getBalance() << endl;
 
 	file.close();
+	
+	saveLast(lastClientId, c.getId());
+
 }
 
-void FilesHelper::saveEmployee(string fileName, string lastIdFile, Employee e) {
-	ofstream file(fileName, ios::app);
+void FilesHelper::saveEmployee(Employee e) {
+	ofstream file(employeesFile, ios::app);
 
 	file << e.getId() << ','
 		<< e.getName() << ','
@@ -36,52 +41,64 @@ void FilesHelper::saveEmployee(string fileName, string lastIdFile, Employee e) {
 		<< e.getSalary() << endl;
 	file.close();
 
-	saveLast(lastIdFile, e.getId());
+	saveLast(lastEmployeeId, e.getId());
 }
 
-vector<Client> FilesHelper::getClients() {
-	vector<Client> clients;
-	ifstream file("data/clients.txt");
+void FilesHelper::saveAdmin(Admin a) {
+	ofstream file(adminsFile, ios::app);
+
+	file << a.getId() << ','
+		<< a.getName() << ','
+		<< a.getPassword() << ','
+		<< a.getSalary() << endl;
+	file.close();
+
+	saveLast(lastAdminId, a.getId());
+}
+
+void FilesHelper::getClients() {
+	
+	ifstream file(clientsFile);
 	string line;
 
 	while (getline(file, line)) {
 		
-		clients.push_back(Parser::parseToClient(line));
+		Client::allClients.push_back(Parser::parseToClient(line));
 		
 	}
 	
 	file.close();
-	return clients;
+	
 }
 
-vector<Employee> FilesHelper::getEmployees() {
-	vector<Employee> employees;
-	ifstream file("data/employees.txt");
+void FilesHelper::getEmployees() {
+
+	ifstream file(employeesFile);
 	string line;
 
 	while (getline(file, line)) {
 
-		employees.push_back(Parser::parseToEmployee(line));
+		Employee::allEmployees.push_back(Parser::parseToEmployee(line));
 
 	}
 
 	file.close();
-	return employees;
+	
 }
 
-vector<Admin> FilesHelper::getAdmins() {
-	vector<Admin> admins;
-	ifstream file("data/admins.txt");
+void FilesHelper::getAdmins() {
+	
+	ifstream file(adminsFile);
 	string line;
 
 	while (getline(file, line)) {
 
-		admins.push_back(Parser::parseToAdmin(line));
+		Admin::allAdmins.push_back(Parser::parseToAdmin(line));
 
 	}
 
 	file.close();
-	return admins;
+	
 }
 
 void FilesHelper::clearFile(string fileName, string lastIdFile) {

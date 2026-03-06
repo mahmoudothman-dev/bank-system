@@ -1,2 +1,1 @@
-#include "filemanager.h"
-
+#include "FileManager.h"

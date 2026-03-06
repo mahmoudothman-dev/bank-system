@@ -124,8 +124,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="datasourceinterface.h" />
-    <ClInclude Include="filemanager.h" />
+    <ClInclude Include="DataSourceInterface.h" />
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="include\Admin.h" />
     <ClInclude Include="include\Client.h" />
     <ClInclude Include="include\Employee.h" />
@@ -135,8 +135,8 @@
     <ClInclude Include="include\Validation.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="datasourceinterface.cpp" />
-    <ClCompile Include="filemanager.cpp" />
+    <ClCompile Include="DataSourceInterface.cpp" />
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="src\Admin.cpp" />
     <ClCompile Include="src\bank-system.cpp" />
     <ClCompile Include="src\Client.cpp" />
