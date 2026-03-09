@@ -102,10 +102,9 @@ void FilesHelper::getAdmins() {
 }
 
 void FilesHelper::clearFile(string fileName, string lastIdFile) {
-	ofstream file(fileName, ios::trunc);
-	file.clear();
+	ofstream file(fileName, ios::out);
 	file.close();
-	ofstream file2(lastIdFile, ios::trunc);
-	file2.clear();
+	ofstream file2(lastIdFile, ios::out);
+	
 	file2.close();
 }

@@ -32,6 +32,7 @@ Employee* Admin::searchEmployee(int id) {
 void Admin::listEmployee() {
 	for (int i = 0; i < Employee::allEmployees.size(); i++) {
 		Employee::allEmployees[i].display();
+		cout << "===========================================" << endl;
 	}
 }
 

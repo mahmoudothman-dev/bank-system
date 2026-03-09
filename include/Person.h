@@ -13,8 +13,8 @@ public:
 	Person(int id, string name, string password);
 
 	void setId(int id);
-	void setName(string name);
-	void setPassword(string password);
+	bool setName(string name);
+	bool setPassword(string password);
 	int getId();
 	string getName();
 	string getPassword();

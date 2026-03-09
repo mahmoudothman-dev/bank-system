@@ -7,9 +7,9 @@
 #define employeesFile "data/employees.txt"
 #define adminsFile "data/admins.txt"
 
-#define lastClientId "data/lastClientId"
-#define lastEmployeeId "data/lastEmployeeId"
-#define lastAdminId "data/lastAdminId"
+#define lastClientId "data/lastClientId.txt"
+#define lastEmployeeId "data/lastEmployeeId.txt"
+#define lastAdminId "data/lastAdminId.txt"
 
 class FilesHelper {
 public:

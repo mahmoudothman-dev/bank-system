@@ -30,7 +30,7 @@ void Employee::addClient(Client& client) {
 	Client::allClients.push_back(client);
 }
 
-Client* searchClient(int id) {
+Client* Employee::searchClient(int id) {
 	for (int i = 0; i < Client::allClients.size(); i++) {
 		if (Client::allClients[i].getId() == id) {
 			return &Client::allClients[i];
@@ -39,21 +39,22 @@ Client* searchClient(int id) {
 	return nullptr;
 }
 
-void listClient() {
+void Employee::listClient() {
 	for (int i = 0; i < Client::allClients.size(); i++) {
 		Client::allClients[i].display();
+		cout << "====================================" << endl;
 	}
 }
 
-void editClient(int id, string name, string password, double balance) {
+void Employee::editClient(int id, string name, string password, double balance) {
 	
-		for (int i = 0; i < Client::allClients.size(); i++) {
-			if (Client::allClients[i].getId() == id) {
-				Client::allClients[i].setName(name);
-				Client::allClients[i].setPassword(password);
-				Client::allClients[i].setBalance(balance);
-			}
+	for (int i = 0; i < Client::allClients.size(); i++) {
+		if (Client::allClients[i].getId() == id) {
+			Client::allClients[i].setName(name);
+			Client::allClients[i].setPassword(password);
+			Client::allClients[i].setBalance(balance);
 		}
+	}
 	
 	
 }

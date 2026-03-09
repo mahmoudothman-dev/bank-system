@@ -19,6 +19,7 @@ void Client:: setBalance(double balance) {
 //depo
 void Client:: deposit(double amount) {
 	this->balance += amount;
+	cout << "Deposit successful" << endl;
 }
 
 //with

@@ -5,23 +5,23 @@
 class FileManager : public DataSourceInterface {
 public:
 
-	void addClient(Client obj);
+	static void addClient(Client obj);
 
-	void addEmployee(Employee obj);
+	static void addEmployee(Employee obj);
 
-	void addAdmin(Admin obj);
+	static void addAdmin(Admin obj);
 
-	void getAllClients();
+	static void getAllClients();
 
-	void getAllEmployees();
+	static void getAllEmployees();
 
-	void getAllAdmins();
+	static void getAllAdmins();
 
-	void removeAllClients();
+	static void removeAllClients();
 
-	void removeAllEmployees();
+	static void removeAllEmployees();
 
-	void removeAllAdmins();
+	static void removeAllAdmins();
 
 };
 
