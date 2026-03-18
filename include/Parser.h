@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include "Transaction.h"
 
 class Parser {
 	static vector<string> split(string line);
@@ -13,4 +14,5 @@ public:
 	static Client parseToClient(string line);
 	static Employee parseToEmployee(string line);
 	static Admin parseToAdmin(string line);
+	static Transaction parseToTransaction(string line);
 };

@@ -8,127 +8,211 @@ void ClientManager::printClientMenu() {
 	cout << "(5) Transfer money" << endl;
 	cout << "(6) Display my balance" << endl;
 	cout << "(7) Logout" << endl;
+	cout << "(8) View my transactions" << endl;
+	cout << "(0) Exit\n" << endl;
 
-	for (int i = 0; i < 4; i++) {
-		cout << endl;
+	
+}
+
+void ClientManager::backOrExit(Client* client) {
+	cout << "\n\n(1) Options\t\t\t\t(0) Exit\n";
+	int choice = Validation::validInt("Enter your choice: ");
+	switch (choice) {
+	case 1:
+		system("cls");
+		clientOptions(client);
+		break;
+	case 0:
+		exit(0);
+
+	default:
+		cout << "Invalid choice, try again";
+		backOrExit(client);
 	}
 }
 
 void ClientManager::updatePassword(Person* person) {
-	string password;
-	
-	
 	while (true) {
-		cout << "Enter new Password: ";
-		cin >> password;
-		if (password != person->getPassword()) {
-			if (person->setPassword(password)) {
-				cout << "Password changed successfully";
+		string password = Validation::enterPassword("Enter password: ");
+		if (password == person->getPassword()) {
+			cout << "It's already your password, try again" << endl;
+			continue;
 
-				break;
-			}
-			
-			
 		}
-		else if (password == person->getPassword()) {
-			cout << "It's already your old password, please enter new password" 
-				<< endl;
+		
+		while (true) {
+			string password2 = Validation::enterPassword("Confirm password: ");
+			if (password == password2) {
+				person->setPassword(password);
+				cout << "Password updated successfully" << endl;
+				return;
+
+			}
+		}
+		
+	}
+	
+	
+	
+}
+
+void ClientManager::viewTransaction(Client* client) {
+	
+	cout << fixed << setprecision(2);
+
+	cout << left << setw(30) << "Type"
+		<< setw(20) << "Amount"
+		<< setw(30) << "Date" << endl;
+		
+
+	cout << string(76, '-') << endl;
+
+
+	for (int i = Transaction::allTransactions.size() - 1; i > 0; i--) {
+		Transaction t = Transaction::allTransactions[i];
+		Date d = t.getDate();
+
+		if (client->getId() == t.getId()) {
+			cout << left << setw(30) << t.getType()
+				<< setw(20) << t.getAmount()
+				<< setw(30) 
+				<< (to_string(d.getDay()) + '/' +
+					to_string(d.getMonth()) + '/' +
+					to_string(d.getYear()) + ' ' +
+					to_string(d.getHour()) + ':' +
+					to_string(d.getMinute()) + ':' +
+					to_string(d.getSecond())) << endl << endl;
+				
+				
+				
+
+
+
 		}
 	}
 	
+	
+	
+
 }
 
 Client* ClientManager::login(int id, string password) {
 	for (int i = 0; i < Client::allClients.size(); i++) {
-		if (Client::allClients[i].getId() == id) {
-			if (Client::allClients[i].getPassword() == password) {
+		if (Client::allClients[i].getId() == id && 
+			Client::allClients[i].getPassword() == password) {
+			
 				return &Client::allClients[i];
-			}
-			else {
-				cout << "Wrong password" << endl;
-				break;
-			}
+		
+			
 		}
-		else {
-			cout << "There is no client with this id, try again" << endl;
-			break;
-		}
+		
 		
 	}
 	return nullptr;
 }
 
 bool ClientManager::clientOptions(Client* client) {
+	
+	cout << system("cls");
+
 	cout << "\t\t\t\t\t==================\n";
 	cout << "\t\t\t\t\t    CLIENT MENU    \n";
-	cout << "\t\t\t\t\t==================\n";
+	cout << "\t\t\t\t\t==================\n\n";
+
+
+
+	cout << "---------" << client->getName() << "---------\n\n";
+
 
 	printClientMenu();
-	int num;
-	cout << "Enter your choice: ";
-	cin >> num;
+	int num = Validation::validInt("Enter your choice: ");
+
 	system("cls");
 
 	switch (num) {
 	case 1:
 
 		client->display();
-		//cout << "=================================";
+		
 		break;
 	case 2:
 		updatePassword(client);
-		
+		FileManager::updateClients();
 		break;
 	case 3: {
-		int money;
-		cout << "Balance: " << client->getBalance() << endl;
-		cout << "Enter money amount you want to deposit: ";
-		cin >> money;
+		double money = Validation::validDouble("Enter amount: ");
 		client->deposit(money);
-		cout << "Balance: " << client->getBalance() << endl;
+		FileManager::updateClients();
+		Transaction t(client->getId(), "Deposite", money, Date::getCurrentDate());
+		Transaction::allTransactions.push_back(t);
+		FileManager::addTransaction(t);
+
 		break;
 	}
-		
+
 	case 4: {
-		int money;
-		cout << "Balance: " << client->getBalance() << endl;
-
-		cout << "Enter money amout you want to withdraw: ";
-		cin >> money;
+		double money = Validation::validDouble("Enter amount: ");
 		client->withdraw(money);
-		cout << "Balance: " << client->getBalance() << endl;
+		FileManager::updateClients();
+		Transaction t(client->getId(), "Withdraw", money, Date::getCurrentDate());
+		Transaction::allTransactions.push_back(t);
+
+		FileManager::addTransaction(t);
 
 		break;
 	}
-		
-		
+
+
 	case 5: {
-		int id, money = 0;
-		cout << "Enter client id: ";
-		cin >> id;
+		int id = Validation::validInt("Enter recipient id: ");
+
+		double money = Validation::validDouble("Enter amount: ");
 		Employee* e = nullptr;
 		Client* c = e->searchClient(id);
-		if (c != nullptr) {
+		if (c) {
 			client->transfer(*c, money);
 		}
 		else {
 			cout << "There is no client with this id" << endl;
 		}
-		//cout << "=================================";
+		FileManager::updateClients();
+		Transaction t1(client->getId(), "Transfer to " + c->getName(), money, 
+			Date::getCurrentDate());
+
+		Transaction t2(c->getId(), "Recieve from " + client->getName(), money, 
+			Date::getCurrentDate());
+
+		Transaction::allTransactions.push_back(t1);
+		FileManager::addTransaction(t1);
+
+		Transaction::allTransactions.push_back(t2);
+		FileManager::addTransaction(t2);
 
 		break;
 	}
-		
+
 	case 6:
 		cout << "Balance: " << client->getBalance();
 		//cout << "=================================";
 		break;
+
 	case 7:
 		return false;
-	
-	}
-	
 
-	
+	case 8:
+		viewTransaction(client);
+		break;
+
+	case 0:
+		exit(0);
+
+	default:
+		system("cls");
+		clientOptions(client);
+	}
+
+
+	backOrExit(client);
+
 	return true;
 }

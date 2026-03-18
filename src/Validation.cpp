@@ -1,6 +1,9 @@
 #include "Validation.h"
 #include <cctype>
 #include <algorithm>
+#include <string>
+#include <conio.h>
+
 
 bool Validation::validName(string name) {
 	if (name.size() < 3 || name.size() > 20) {
@@ -92,4 +95,107 @@ bool Validation::validSalary(double salary) {
 		return false;
 	}
 	return true;
+}
+
+double Validation::validDouble(string msg) {
+	double num;
+	
+	while (true) {
+		cout << msg;
+		cin >> num;
+		if (cin.fail()) {
+			cout << "You should enter valid number, try again\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
+		else {
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			return num;
+		}
+	}
+	
+}
+
+int Validation::validInt(string msg) {
+	int num;
+
+	while (true) {
+		cout << msg;
+		cin >> num;
+		if (cin.fail()) {
+			cout << "You should enter valid number, try again\n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
+		else {
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			return num;
+		}
+	}
+
+}
+
+string Validation::enterName(string msg) {
+	string name;
+	do {
+		cout << msg;
+		getline(cin, name);
+		
+	} while (!validName(name));
+
+	return name;
+
+}
+
+string Validation::getPassword() {
+	string password;
+	char ch;
+
+	while (true) {
+		ch = _getch();
+		if (ch == 13) break;
+		else if (ch == 8) {
+			if (!password.empty()) {
+				password.pop_back();
+				cout << "\b \b";
+			}
+		}
+		else {
+			password += ch;
+			cout << '*';
+		}
+
+	}
+	cout << endl;
+
+	return password;
+}
+
+string Validation::enterPassword(string msg) {
+	string password;
+	do {
+		cout << msg;
+		password = getPassword();
+
+	} while (!validPassword(password));
+	return password;
+}
+
+
+double Validation::enterBalance(string msg) {
+	double balance = validDouble(msg);
+	while (!validBalance(balance)) {
+		cout << msg;
+		cin >> balance;
+	}
+	return balance;
+}
+
+double Validation::enterSalary(string msg) {
+	double salary = validDouble(msg);
+	while (!validSalary(salary)) {
+		cout << msg;
+		cin >> salary;
+	}
+	return salary;
 }

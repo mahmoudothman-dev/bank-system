@@ -8,6 +8,7 @@ private:
 
 public:
 	static vector<Client> allClients;
+	
 
 	Client();
 		

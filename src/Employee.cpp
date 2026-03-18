@@ -23,7 +23,7 @@ double Employee::getSalary() {
 
 void Employee::display() {
 	Person::display();
-	cout << "Salary: " << salary << endl;
+	cout << "Salary: " << salary << " EGP" << endl;
 }
 
 void Employee::addClient(Client& client) {
@@ -40,9 +40,23 @@ Client* Employee::searchClient(int id) {
 }
 
 void Employee::listClient() {
-	for (int i = 0; i < Client::allClients.size(); i++) {
-		Client::allClients[i].display();
-		cout << "====================================" << endl;
+	
+	cout << "Total clients: " << Client::allClients.size() << endl << endl;
+	cout << fixed << setprecision(2);
+
+	cout << left << setw(6) << "ID"
+		<< setw(30) << "Name"
+		<< setw(30) << "Password"
+		<< setw(10) << "Balance" << endl;
+
+	cout << string(76, '-') << endl;
+
+
+	for (auto client : Client::allClients) {
+		cout << left << setw(6) << client.getId()
+			<< setw(30) << client.getName()
+			<< setw(30) << client.getPassword()
+			<< setw(10) << client.getBalance() << " EGP" << endl << endl;
 	}
 }
 
@@ -57,4 +71,21 @@ void Employee::editClient(int id, string name, string password, double balance) 
 	}
 	
 	
+}
+
+void Employee::deleteClient(int id) {
+
+	for (int i = 0; i < Client::allClients.size(); i++) {
+		 
+
+		if (id == Client::allClients[i].getId()) {
+			for (int j = i; j < Client::allClients.size() - 1; j++) {
+				Client::allClients[j] = Client::allClients[j + 1];
+			}
+			Client::allClients.pop_back();
+
+			return;
+		}
+		
+	}
 }

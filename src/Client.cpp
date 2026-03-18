@@ -20,31 +20,36 @@ void Client:: setBalance(double balance) {
 void Client:: deposit(double amount) {
 	this->balance += amount;
 	cout << "Deposit successful" << endl;
+	cout << "Balance: " << balance << " EGP" << endl;
+
 }
 
 //with
 void Client::withdraw(double amount) {
 	if (balance >= amount) {
 		this->balance -= amount;
-		cout << "You withdrew " << amount << " successfully" << endl;
+
+		cout << "Withdraw successful" << endl;
 	}
 	else {
 		cout << "Your balance is insufficient for this transaction" << endl;
 		
 	}
-	
+	cout << "Balance: " << balance << " EGP" << endl;
+
 }
 
 //transferto
 void Client::transfer(Client& another, double amount) {
 	if (balance >= amount) {
-		another.deposit(amount);
+		another.balance += amount;
 		balance -= amount;
 		cout << "Transaction was successful" << endl;
 	}
 	else {
 		cout << "Your balance is insufficient for this transaction" << endl;
 	}
+	cout << "Balance: " << balance << " EGP" << endl;
 }
 
 double Client::getBalance() {
@@ -53,7 +58,8 @@ double Client::getBalance() {
 //meth
 void Client::display() {
 	Person::display();
-	cout << "Balance: " << balance << endl;
+	cout << "Balance: " << balance << " EGP" << endl;
+	
 	
 }
 

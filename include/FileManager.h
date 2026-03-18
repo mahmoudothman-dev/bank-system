@@ -1,6 +1,7 @@
 #pragma once
 #include "DataSourceInterface.h"
 #include "FilesHelper.h"
+#include "Validation.h"
 
 class FileManager : public DataSourceInterface {
 public:
@@ -11,11 +12,15 @@ public:
 
 	static void addAdmin(Admin obj);
 
+	static void addTransaction(Transaction t);
+
 	static void getAllClients();
 
 	static void getAllEmployees();
 
 	static void getAllAdmins();
+
+	static void getAllTransactions();
 
 	static void removeAllClients();
 
@@ -23,6 +28,15 @@ public:
 
 	static void removeAllAdmins();
 
+	static void getAllData();
+
+	static void updateClients();
+
+	static void updateEmployees();
+
+	static void updateAdmins();
+
+	
 };
 
 

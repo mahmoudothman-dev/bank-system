@@ -17,7 +17,9 @@ public:
 	void addEmployee(Employee& employee);
 	Employee* searchEmployee(int id);
 	void editEmployee(int id, string name, string password, double salary) ;
-	void listEmployee() ;
+	void listEmployee();
+
+	void deleteEmployee(int id);
 };
 
 

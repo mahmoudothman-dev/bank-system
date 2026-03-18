@@ -14,9 +14,15 @@ public:
 
 	static void listAllEmployees(Admin* admin);
 
-	static void searchForEmployee(Admin* admin);
+	static Employee* searchForEmployee(Admin* admin);
 
 	static void editEmployeeInfo(Admin* admin);
+
+	static void backOrExit(Admin* admin);
+
+	static void deleteTheEmployee(Admin* admin);
+
+	static void showTotalMoney();
 
 };
 

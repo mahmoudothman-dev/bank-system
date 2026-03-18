@@ -1,11 +1,10 @@
 #pragma once
-#include <iostream>
 #include <chrono>
 #include <thread>
 #include "AdminManager.h"
-#include "EmployeeManager.h"
-#include "ClientManager.h"
-using namespace std;
+#include "Validation.h"
+#include "FileManager.h"
+
 
 class Screens {
 public:
@@ -18,7 +17,9 @@ public:
 
 	static int loginAs();
 
-	
+	static void invalid(int c);
+
+	static void logout();
 
 	static void loginScreen(int c);
 

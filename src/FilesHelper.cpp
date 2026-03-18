@@ -86,6 +86,15 @@ void FilesHelper::getEmployees() {
 	
 }
 
+void FilesHelper::getTransactions() {
+	ifstream file(transactionFile);
+	string line;
+	while (getline(file, line)) {
+		Transaction::allTransactions.push_back(Parser::parseToTransaction(line));
+	}
+	file.close();
+}
+
 void FilesHelper::getAdmins() {
 	
 	ifstream file(adminsFile);
@@ -101,10 +110,26 @@ void FilesHelper::getAdmins() {
 	
 }
 
+
 void FilesHelper::clearFile(string fileName, string lastIdFile) {
 	ofstream file(fileName, ios::out);
 	file.close();
 	ofstream file2(lastIdFile, ios::out);
 	
 	file2.close();
+}
+
+void FilesHelper::saveTransaction(Transaction t) {
+	ofstream file(transactionFile, ios::app);
+	file << t.getId() << ','
+		<< t.getType() << ','
+		<< t.getAmount() << ','
+		<< t.getDate().getDay() << ','
+		<< t.getDate().getMonth() << ','
+		<< t.getDate().getYear() << ','
+		<< t.getDate().getHour() << ','
+		<< t.getDate().getMinute() << ','
+		<< t.getDate().getSecond() << endl;
+
+	file.close();
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Client.h"
-
+#include <iomanip>
 
 class Employee : public Person {
 private:
@@ -27,6 +27,8 @@ public:
 	void listClient();
 
 	void editClient(int id, string name, string password, double balance);
+
+	void deleteClient(int id);
 
 };
 

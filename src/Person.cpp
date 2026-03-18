@@ -16,7 +16,7 @@ void Person::setId(int id) {
 	this->id = id;
 }
 
-bool Person::setName(string name) {
+void Person::setName(string name) {
 	if (Validation::validName(name)) {
 		name[0] = toupper(name[0]);
 		for (int i = 0; i < name.size(); i++) {
@@ -26,16 +26,16 @@ bool Person::setName(string name) {
 		}
 		this->name = name;
 		
-		return true;
+		
 	}
-	return false;
+	
 }
-bool Person::setPassword(string password) {
+void Person::setPassword(string password) {
 	if (Validation::validPassword(password)) {
 		this->password = password;
-		return true;
+		
 	}
-	return false;
+	
 }
 
 int Person::getId() {

@@ -33,192 +33,138 @@ void Screens::bankName() {
 }
 void Screens::welcome() {
 	
-		for (int i = 0; i < 8; i++) {
-			cout << endl;
-		}
-		cout << "                    #       #    #########    #             ########     #######     #       #    #########\n";
-		cout << "                    #       #    #            #            #            #       #    ##     ##    #        \n";
-		cout << "                    #       #    #            #            #            #       #    # #   # #    #        \n";
-		cout << "                    #       #    #            #            #            #       #    #  # #  #    #        \n";
-		cout << "                    #   #   #    #########    #            #            #       #    #   #   #    #########\n";
-		cout << "                    #  # #  #    #            #            #            #       #    #       #    #        \n";
-		cout << "                    # #   # #    #            #            #            #       #    #       #    #        \n";
-		cout << "                    ##     ##    #            #            #            #       #    #       #    #        \n";
-		cout << "                    #       #    #########    #########     ########     #######     #       #    #########\n";
+	
+	for (int i = 0; i < 8; i++) {
+		cout << endl;
+	}
+	cout << "                    #       #    #########    #             ########     #######     #       #    #########\n";
+	cout << "                    #       #    #            #            #            #       #    ##     ##    #        \n";
+	cout << "                    #       #    #            #            #            #       #    # #   # #    #        \n";
+	cout << "                    #       #    #            #            #            #       #    #  # #  #    #        \n";
+	cout << "                    #   #   #    #########    #            #            #       #    #   #   #    #########\n";
+	cout << "                    #  # #  #    #            #            #            #       #    #       #    #        \n";
+	cout << "                    # #   # #    #            #            #            #       #    #       #    #        \n";
+	cout << "                    ##     ##    #            #            #            #       #    #       #    #        \n";
+	cout << "                    #       #    #########    #########     ########     #######     #       #    #########\n";
 	
 }
 void Screens::loginOptions() {
 	cout << "(1) Client" << endl;
 	cout << "(2) Employee" << endl;
 	cout << "(3) Admin" << endl;
+	cout << "(0) Exit\n" << endl;
 }
 
 
 int Screens::loginAs() {
-	int num;
-	for (int i = 0; i < 4; i++) {
-		cout << endl;
-	}
+	loginOptions();
 
+	int num = Validation::validInt("Enter choice: ");
+	
 
 	while (true) {
-		cout << "Login as: ";
-		cin >> num;
+		
 		if (num == 1 || num == 2 || num == 3) {
+			system("cls");
 			return num;
 		}
-		else if (cin.fail()) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Invalid choice, please choose between 1, 2, or 3" << endl;
+		else if (num == 0) {
+			exit(0);
+		}
+		
+		else {
+			system("cls");
+			
+			loginAs();
+
+		}
+
+	}
+	
+}
+
+void Screens::invalid(int c) {
+	system("cls");
+	cout << "Incorrect id or password\n" << endl;
+	loginScreen(c);
+}
+
+void Screens::logout() {
+	system("cls");
+	loginScreen(loginAs());
+}
+
+void Screens::loginScreen(int c) {
+	cout << "\t\t\t\t\t==================\n";
+	cout << "\t\t\t\t\t    LOGIN PAGE    \n";
+	cout << "\t\t\t\t\t==================\n\n";
+
+	int id = Validation::validInt("Enter id: ");
+
+	string password = Validation::enterPassword("Enter password: ");
+
+	switch (c) {
+	case 1: {
+		Client* client = ClientManager::login(id, password);
+		if (client) {
+			while (ClientManager::clientOptions(client));
+			logout();
+		}
+		else {
+			invalid(c);
+		}
+		break;
+	}
+		
+
+	case 2: {
+		Employee* employee = EmployeeManager::login(id, password);
+		if (employee) {
+			while (EmployeeManager::employeeOptions(employee));
+			logout();
 
 		}
 		else {
-			cout << "Invalid choice, please choose between 1, 2, or 3" << endl;
-
+			invalid(c);
 		}
-
+		break;
 	}
-	
-}
-
-
-
-void Screens::loginScreen(int c) {
-	
-	int id;
-	string password;
-	
-	while (true) {
-		cout << "\t\t\t\t\t==================\n";
-		cout << "\t\t\t\t\t    LOGIN PAGE    \n";
-		cout << "\t\t\t\t\t==================\n";
-
-
-		for (int i = 0; i < 4; i++) {
-			cout << endl;
-		}
-
-		cout << "Enter your id: ";
-		cin >> id;
-		cout << "Enter your password: ";
-		cin >> password;
-
-		system("cls");
 		
 
-		if (c == 1) {
-			
-			while (true) {
-				Client* c = ClientManager::login(id, password);
-				if (c != nullptr) {
-					bool result = ClientManager::clientOptions(c);
-					if (!result) return;
+	case 3: {
+		Admin* admin = AdminManager::login(id, password);
+		if (admin) {
+			while (AdminManager::adminOptions(admin));
+			logout();
 
-					for (int i = 0; i < 2; i++) {
-						cout << endl;
-					}
-					cout << "=========================================";
-					for (int i = 0; i < 2; i++) {
-						cout << endl;
-					}
-					
-				}
-				else if (c == nullptr) {
-					break;
-				}
-				int num;
-				cout << "(1) Options\t\t\t(0) Exit" << endl;
-				cout << "Enter your choice: ";
-				cin >> num;
-				system("cls");
-				if (num == 0) return;
-				
-			}
-			
-			
 		}
-		else if (c == 2) {
-			while (true) {
-				Employee* e = EmployeeManager::login(id, password);
-				if (e != nullptr) {
-					bool result = EmployeeManager::employeeOptions(e);
-					if (!result) return;
-
-
-					for (int i = 0; i < 2; i++) {
-						cout << endl;
-					}
-
-					cout << "=========================================";
-					for (int i = 0; i < 2; i++) {
-						cout << endl;
-					}
-				}
-				else if (e == nullptr) {
-					break;
-				}
-				int num;
-				cout << "(1) Options\t\t\t(0) Exit" << endl;
-				cout << "Enter your choice: ";
-				cin >> num;
-				system("cls");
-				if (num == 0) return;
-
-			}
-			
+		else {
+			invalid(c);
 		}
-		else if (c == 3) {
-			while (true) {
-				Admin* a = AdminManager::login(id, password);
-				if (a != nullptr) {
-					bool result = AdminManager::adminOptions(a);
-					if (!result) return;
-
-					
-					for (int i = 0; i < 2; i++) {
-						cout << endl;
-					}
-
-					cout << "=========================================";
-					for (int i = 0; i < 2; i++) {
-						cout << endl;
-					}
-				}
-				else if (a == nullptr) {
-					break;
-				}
-				int num;
-				cout << "(1) Options\t\t\t(0) Exit" << endl;
-				cout << "Enter your choice: ";
-				cin >> num;
-				system("cls");
-				if (num == 0) return;
+		break;
 
 
-			}
-			
-		}
 	}
 	
-}
+	}
 
+
+}
 
 
 void Screens::runApp() {
+	FileManager::getAllData();
+
 	
 	bankName();
 	this_thread::sleep_for(chrono::seconds(3));
 	system("cls");
+
 	welcome();
 	this_thread::sleep_for(chrono::seconds(3));
-	
+	system("cls");
 
-	system("cls");
-	loginOptions();
-	int num = loginAs();
-	system("cls");
-	loginScreen(num);
+	loginScreen(loginAs());
 		
 		
 

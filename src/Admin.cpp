@@ -30,9 +30,23 @@ Employee* Admin::searchEmployee(int id) {
 
 //List employee
 void Admin::listEmployee() {
-	for (int i = 0; i < Employee::allEmployees.size(); i++) {
-		Employee::allEmployees[i].display();
-		cout << "===========================================" << endl;
+	cout << "Total employees: " << Employee::allEmployees.size() << endl << endl;
+
+	cout << fixed << setprecision(2);
+
+	cout << left << setw(6) << "ID"
+		<< setw(30) << "Name"
+		<< setw(30) << "Password"
+		<< setw(10) << "Salary" << endl;
+
+	cout << string(76, '-') << endl;
+
+
+	for (auto employee : Employee::allEmployees) {
+		cout << left << setw(6) << employee.getId()
+			<< setw(30) << employee.getName()
+			<< setw(30) << employee.getPassword()
+			<< setw(10) << employee.getSalary() << " EGP" << endl << endl;
 	}
 }
 
@@ -45,4 +59,21 @@ void Admin::editEmployee(int id , string name , string password , double salary)
 			Employee::allEmployees[i].setSalary(salary);
 		}
 	}
+}
+
+void Admin::deleteEmployee(int id) {
+
+	for (int i = 0; i < Employee::allEmployees.size(); i++) {
+
+
+		if (id == Employee::allEmployees[i].getId()) {
+			for (int j = i; j < Employee::allEmployees.size() - 1; j++) {
+				Employee::allEmployees[j] = Employee::allEmployees[j + 1];
+			}
+			Employee::allEmployees.pop_back();
+			
+			return;
+		}
+
+	} 
 }
